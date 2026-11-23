@@ -2,8 +2,8 @@
 
 Панель отдаёт HTTP API для сторонних интеграций на `/api/v3/*`. Авторизация — по ключу, права — по областям доступа (scopes).
 
-- [Эндпоинты](/reference/api-endpoints)
-- [Ошибки](/reference/api-errors)
+- [Эндпоинты](api-endpoints.md)
+- [Ошибки](api-errors.md)
 - Интерактивная документация: `/api/v3/docs`, схема — `/api/v3/openapi.json`
 
 ## Включение

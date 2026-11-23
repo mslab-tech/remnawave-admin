@@ -11,11 +11,10 @@ backups/
 node_modules/
 log_error.json
 IMPROVEMENTS.md
-CLAUDE.md
 access.json
 logs_node_agent.json
 design-mockups/
-.claude/
+.kimi-code/
 .coverage
 chroma_data/
 tmp_files.txt
@@ -46,10 +45,6 @@ mcp_server/
 # DesignSync — локальный инструментарий, не часть проекта
 web/frontend/.design-sync/
 web/frontend/.gitignore
-
-# VitePress
-docs/.vitepress/cache/
-docs/.vitepress/.temp/
 
 # Локальные переопределения стенда: у каждого свои, в репозиторий не нужны
 docker-compose.override.yml

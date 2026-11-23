@@ -9,21 +9,23 @@
 
 ## Заголовки
 
-::: code-group
 
-```http [v2]
+**v2:**
+
+```http
 X-Webhook-Event: user.created
 X-Webhook-Signature: sha256=<hex>
 X-Webhook-Timestamp: 1744808000
 X-Webhook-Signature-Version: v2
 ```
 
-```http [v1]
+**v1:**
+
+```http
 X-Webhook-Event: user.created
 X-Webhook-Signature: sha256=<hex>
 ```
 
-:::
 
 ## Что подписывается
 

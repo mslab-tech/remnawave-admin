@@ -43,3 +43,10 @@ def test_all_parameters_reach_the_installer():
 def test_command_stays_single_line():
     """Панель отдаёт её одной строкой для копирования — перенос сломал бы вставку."""
     assert "\n" not in COMMAND
+
+
+def test_installer_uses_current_repository():
+    assert COMMAND.startswith(
+        "curl -fsSL --retry 3 --retry-delay 2 "
+        "https://raw.githubusercontent.com/mslab-tech/remnawave-admin/main/node-agent/install.sh "
+    )

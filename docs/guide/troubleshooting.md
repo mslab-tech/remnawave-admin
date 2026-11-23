@@ -56,20 +56,20 @@ GitHub ограничивает частоту скачиваний с `raw.gith
 Проверить, в лимите ли вы:
 
 ```bash
-curl -sI https://raw.githubusercontent.com/Case211/remnawave-admin/main/node-agent/install.sh | head -1
+curl -sI https://raw.githubusercontent.com/mslab-tech/remnawave-admin/main/node-agent/install.sh | head -1
 ```
 
 `HTTP/2 200` — всё в порядке, `HTTP/2 429` — лимит ещё держится.
 
 ## Агент ноды не подключается
 
-`server rejected WebSocket connection: HTTP 404` — reverse proxy не пропускает `/api/v2/agent/ws`. Пример правильного конфига: [Веб-панель и reverse proxy](/guide/web-panel).
+`server rejected WebSocket connection: HTTP 404` — reverse proxy не пропускает `/api/v2/agent/ws`. Пример правильного конфига: [Веб-панель и reverse proxy](web-panel.md).
 
-Прочие случаи разобраны в разделе [Node Agent](/guide/node-agent#если-данные-не-идут).
+Прочие случаи разобраны в разделе [Node Agent](node-agent.md#если-данные-не-идут).
 
 ## Не приходят уведомления от панели
 
-Проверьте [настройку webhook](/guide/webhook-setup#если-не-приходит): чаще всего дело в несовпадении секретов или в `https://` там, где нужен `http://`.
+Проверьте [настройку webhook](webhook-setup.md#если-не-приходит): чаще всего дело в несовпадении секретов или в `https://` там, где нужен `http://`.
 
 ## Ошибка подключения к базе
 
@@ -77,7 +77,7 @@ curl -sI https://raw.githubusercontent.com/Case211/remnawave-admin/main/node-age
 
 ## Панель ругается на версию плагина
 
-Плагин требует панель свежее, чем у вас. Обновите панель — [как](/guide/upgrade) — либо поставьте версию плагина постарше.
+Плагин требует панель свежее, чем у вас. Обновите панель — [как](upgrade.md) — либо поставьте версию плагина постарше.
 
 ## Логи
 
@@ -101,4 +101,4 @@ tail -100 ./logs/adminbot_INFO.log
 
 ## Куда идти дальше
 
-Если ничего из перечисленного не подошло — [issues на GitHub](https://github.com/Case211/remnawave-admin/issues) или [чат в Telegram](https://t.me/remnawave_admin). К вопросу сразу приложите версию панели, кусок логов и то, что уже пробовали: это экономит один круг переписки.
+Если ничего из перечисленного не подошло — [issues на GitHub](https://github.com/mslab-tech/remnawave-admin/issues) или [чат в Telegram](https://t.me/remnawave_admin). К вопросу сразу приложите версию панели, кусок логов и то, что уже пробовали: это экономит один круг переписки.
