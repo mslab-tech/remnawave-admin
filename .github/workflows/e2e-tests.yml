@@ -37,6 +37,8 @@ jobs:
 
       - name: Build frontend
         run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
 
       - name: Start preview server
         run: npx vite preview --port 4173 --host 0.0.0.0 &
