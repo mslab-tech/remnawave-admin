@@ -2,10 +2,10 @@
 
 Remnawave Admin умеет отправлять свои события на любой HTTP-адрес. Подписка выбирает набор событий, подходящие уходят подписанным JSON-запросом.
 
-Не путайте с [входящим webhook от панели Remnawave](/guide/webhook-setup) — там события приходят к нам.
+Не путайте с [входящим webhook от панели Remnawave](../guide/webhook-setup.md) — там события приходят к нам.
 
-- [Каталог событий](/reference/webhook-events)
-- [Проверка подписи](/reference/webhook-signatures)
+- [Каталог событий](webhook-events.md)
+- [Проверка подписи](webhook-signatures.md)
 
 ## Понятия
 
@@ -49,7 +49,7 @@ X-Webhook-Signature-Version: v2          # только v2
 }
 ```
 
-Содержимое `data` по каждому событию — в [каталоге](/reference/webhook-events).
+Содержимое `data` по каждому событию — в [каталоге](webhook-events.md).
 
 ## Подпись
 
@@ -62,7 +62,7 @@ X-Webhook-Signature-Version: v2          # только v2
 
 Метка времени приходит в `X-Webhook-Timestamp`. Принимающей стороне стоит отклонять запросы, где она отличается от текущего времени больше чем на пять минут: это защита от повторной отправки перехваченного запроса.
 
-Примеры приёмников на Python, Node, Go и PHP — в разделе [Проверка подписи](/reference/webhook-signatures).
+Примеры приёмников на Python, Node, Go и PHP — в разделе [Проверка подписи](webhook-signatures.md).
 
 ## Повторы
 

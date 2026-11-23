@@ -2,7 +2,7 @@
 
 Панель Remnawave умеет сообщать о том, что у неё происходит: продлилась подписка, добавилось устройство, отвалилась нода. Remnawave Admin принимает эти события и превращает в уведомления в Telegram.
 
-Не путайте с [исходящими webhook](/reference/webhooks) — там наоборот, Remnawave Admin сам рассылает события во внешние системы.
+Не путайте с [исходящими webhook](../reference/webhooks.md) — там наоборот, Remnawave Admin сам рассылает события во внешние системы.
 
 ## Настройка
 
@@ -26,11 +26,11 @@ WEBHOOK_SECRET_HEADER=тот_же_самый_ключ
 
 Имя хоста в `WEBHOOK_URL` — это имя сервиса из вашего `docker-compose.yml`. Если бот и панель в разных сетях или на разных серверах, поставьте перед ботом reverse proxy и укажите его адрес.
 
-::: danger Самая частая ошибка — HTTPS на внутренний адрес
-Webhook-сервер бота слушает **HTTP**. Адрес вида `https://bot:8080/webhook` даёт в логах панели `write EPROTO ... tlsv1 alert internal error`.
-
-Внутри Docker-сети всегда `http://`. Если нужен HTTPS снаружи — терминируйте его на reverse proxy, а до бота идите по HTTP.
-:::
+> [!CAUTION]
+> **Самая частая ошибка — HTTPS на внутренний адрес**
+> Webhook-сервер бота слушает **HTTP**. Адрес вида `https://bot:8080/webhook` даёт в логах панели `write EPROTO ... tlsv1 alert internal error`.
+>
+> Внутри Docker-сети всегда `http://`. Если нужен HTTPS снаружи — терминируйте его на reverse proxy, а до бота идите по HTTP.
 
 ## Проверка
 
@@ -43,29 +43,44 @@ curl http://localhost:8080/webhook/health
 
 ## Какие события приходят
 
-::: details Пользователи (`user.*`)
+<details>
+<summary>Пользователи (`user.*`)</summary>
+
 `created`, `modified`, `deleted`, `revoked`, `disabled`, `enabled`, `limited`, `expired`, `traffic_reset`, `first_connected`, `not_connected`, `bandwidth_usage_threshold_reached`, а также предупреждения об истечении: `expires_in_72_hours`, `expires_in_48_hours`, `expires_in_24_hours`, `expired_24_hours_ago`.
 
 В уведомлении видно, что именно изменилось: лимит трафика, дата истечения, лимит устройств — старое значение и новое, ссылка на подписку, сквад.
-:::
 
-::: details Устройства (`user_hwid_devices.*`)
+</details>
+
+<details>
+<summary>Устройства (`user_hwid_devices.*`)</summary>
+
 `added`, `deleted` — пользователь, HWID устройства, дата.
-:::
 
-::: details Ноды (`node.*`)
+</details>
+
+<details>
+<summary>Ноды (`node.*`)</summary>
+
 `created`, `modified`, `deleted`, `disabled`, `enabled`, `connection_lost`, `connection_restored`, `traffic_notify` — название, UUID, адрес, страна, статус, лимит трафика.
-:::
 
-::: details Сервис и ошибки (`service.*`, `errors.*`)
+</details>
+
+<details>
+<summary>Сервис и ошибки (`service.*`, `errors.*`)</summary>
+
 `panel_started`, `login_attempt_failed`, `login_attempt_success` — с адресом и User-Agent. Плюс `errors.bandwidth_usage_threshold_reached_max_notifications`.
-:::
 
-::: details Биллинг инфраструктуры (`crm.*`)
+</details>
+
+<details>
+<summary>Биллинг инфраструктуры (`crm.*`)</summary>
+
 Напоминания об оплате нод: за 7 дней, 48 и 24 часа, в день оплаты, и просрочки на 24 часа, 48 часов и 7 дней — нода, провайдер, сумма, дата следующего платежа.
-:::
 
-Куда какое уведомление попадёт, решают [топики](/guide/bot#раскладка-по-топикам).
+</details>
+
+Куда какое уведомление попадёт, решают [топики](bot.md#раскладка-по-топикам).
 
 ## Если не приходит
 

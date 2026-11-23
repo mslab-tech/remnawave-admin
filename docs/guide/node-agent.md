@@ -2,7 +2,7 @@
 
 Агент ставится на каждую ноду и делает три вещи: читает `access.log` Xray и шлёт подключения в панель, снимает метрики хоста и сети, держит канал команд (терминал, скрипты, списки блокировок).
 
-Без агента не работает [анти-абуз](/guide/anti-abuse) — панели просто неоткуда узнать, кто и откуда подключается.
+Без агента не работает [анти-абуз](anti-abuse.md) — панели просто неоткуда узнать, кто и откуда подключается.
 
 ## Установка одной командой
 
@@ -13,7 +13,7 @@
 
 ```bash
 curl -fsSL --retry 3 --retry-delay 2 \
-  https://raw.githubusercontent.com/Case211/remnawave-admin/main/node-agent/install.sh \
+  https://raw.githubusercontent.com/mslab-tech/remnawave-admin/main/node-agent/install.sh \
   -o /tmp/rwa-node-agent-install.sh \
   && bash /tmp/rwa-node-agent-install.sh --uuid UUID --url URL --token TOKEN
 ```
@@ -37,7 +37,7 @@ curl -fsSL --retry 3 --retry-delay 2 \
 
 ```bash
 mkdir -p /opt/remnawave-node-agent && cd /opt/remnawave-node-agent
-curl -fsSLO --retry 3 --retry-delay 2 https://raw.githubusercontent.com/Case211/remnawave-admin/main/node-agent/docker-compose.yml
+curl -fsSLO --retry 3 --retry-delay 2 https://raw.githubusercontent.com/mslab-tech/remnawave-admin/main/node-agent/docker-compose.yml
 nano .env
 docker compose up -d
 ```
@@ -50,7 +50,7 @@ AGENT_INTERVAL_SECONDS=30
 AGENT_XRAY_LOG_PATH=/var/log/remnanode/access.log
 ```
 
-Образ тянется готовый: `ghcr.io/case211/remnawave-admin-node-agent:latest`.
+Образ тянется готовый: `ghcr.io/mslab-tech/remnawave-admin-node-agent:latest`.
 
 ### Переменные агента
 
@@ -70,7 +70,7 @@ AGENT_XRAY_LOG_PATH=/var/log/remnanode/access.log
 | `AGENT_WS_URL` | адрес WebSocket, если отличается | = `AGENT_COLLECTOR_URL` |
 | `AGENT_WS_SECRET_KEY` | ключ проверки подписи команд | — |
 
-Переменные `AGENT_NDPI_*` описаны в разделе [Детект торрентов](/guide/torrents).
+Переменные `AGENT_NDPI_*` описаны в разделе [Детект торрентов](torrents.md).
 
 ## Проверка
 
@@ -96,7 +96,7 @@ INFO: Node Agent stopped
 
 ## Прокси перед коллектором
 
-Агент ходит в `/api/v2/collector/*` и держит WebSocket на `/api/v2/agent/ws`. Оба пути должны проходить через ваш reverse proxy — примеры конфигов в разделе [Веб-панель и reverse proxy](/guide/web-panel).
+Агент ходит в `/api/v2/collector/*` и держит WebSocket на `/api/v2/agent/ws`. Оба пути должны проходить через ваш reverse proxy — примеры конфигов в разделе [Веб-панель и reverse proxy](web-panel.md).
 
 ## Что агент читает
 
