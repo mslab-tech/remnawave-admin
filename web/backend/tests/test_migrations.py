@@ -125,3 +125,10 @@ class TestMigrationFiles:
         files = self._get_migration_files()
         auto_files = [f for f in files if "automation" in f.name.lower()]
         assert len(auto_files) > 0, "Automation migration not found"
+
+    def test_repo_migration_updates_only_builtin_agent_script(self):
+        migration = MIGRATIONS_DIR / "20261123_0128_update_agent_script_repo.py"
+        content = migration.read_text(encoding="utf-8")
+        assert 'down_revision: Union[str, None] = "0127"' in content
+        assert 'REPO_TARBALL="https://github.com/mslab-tech/remnawave-admin/' in content
+        assert "WHERE name = 'update_agent' AND is_builtin = true" in content

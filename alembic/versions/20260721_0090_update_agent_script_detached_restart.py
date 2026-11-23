@@ -30,7 +30,7 @@ set -e
 
 CONTAINER_NAME="${CONTAINER_NAME:-remnawave-node-agent}"
 SERVICE_NAME="${SERVICE_NAME:-remnawave-node-agent}"
-REPO_TARBALL="https://github.com/Case211/remnawave-admin/archive/refs/heads/main.tar.gz"
+REPO_TARBALL="https://github.com/mslab-tech/remnawave-admin/archive/refs/heads/main.tar.gz"
 
 echo "=== Updating Remnawave Node Agent ==="
 
